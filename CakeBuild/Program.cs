@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using Cake.Common;
 using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
@@ -8,8 +10,6 @@ using Cake.Frosting;
 using Cake.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
 using Vintagestory.API.Common;
 
 public static class Program
@@ -35,7 +35,8 @@ public class BuildContext : FrostingContext
     {
         Versions = new string[ProjectNames.Length];
         Names = new string[ProjectNames.Length];
-        for (int i = 0; i < ProjectNames.Length; i++) {
+        for (int i = 0; i < ProjectNames.Length; i++)
+        {
             BuildConfiguration = context.Argument("configuration", "Release");
             SkipJsonValidation = context.Argument("skipJsonValidation", false);
             var modInfo = context.DeserializeJsonFromFile<ModInfo>($"../../{BuildContext.ProjectNames[i]}/{BuildContext.ProjectNames[i]}/modinfo.json");
@@ -115,8 +116,10 @@ public sealed class PackageTask : FrostingTask<BuildContext>
             context.CopyFile($"../../{BuildContext.ProjectNames[i]}/{BuildContext.ProjectNames[i]}/modinfo.json", $"../../bin/ZipStaging/{context.Names[i]}/modinfo.json");
             context.Zip($"../../bin/ZipStaging/{context.Names[i]}", $"../../bin/Releases/{context.Names[i]}_{context.Versions[i]}.zip");
         }
-        DeleteDirectorySettings DDS = new DeleteDirectorySettings();
-        DDS.Recursive = true;
+        DeleteDirectorySettings DDS = new()
+        {
+            Recursive = true
+        };
         context.DeleteDirectory($"../../bin/ZipStaging/", DDS);
         context.DeleteDirectory($"../../bin/Release", DDS);
     }
