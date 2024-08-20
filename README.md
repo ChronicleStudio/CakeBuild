@@ -9,4 +9,5 @@ To Select a specific project for release, add/remove the specific prodject name 
 # Credits
 - CakeBuild is build when using the [Vintage Story Mod Template](https://github.com/anegostudios/vsmodtemplate), Created by [Th3Dilli](https://github.com/Th3Dilli) a member of [Angle Stuidios](https://github.com/anegostudios).
 
-- Modified by [Saruan The White](https://github.com/JonathanArendt) a member of this prodject inorder to better allow the functionalies needed by the orginization.
+- Modified by [Saruan The White](https://github.com/JonathanArendt) a member of this project inorder to better allow the functionalies needed by the orginization.
+- Bug Fixes and Refactoring by [Clae Oczachowski](https://github.com/claeoz)
